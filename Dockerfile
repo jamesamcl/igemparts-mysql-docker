@@ -10,12 +10,13 @@ RUN apt-get install -y \
     npm \
     && update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
-ADD xml_parts.xml /tmp/igemparts/
+ADD xml_parts.xml.gz /tmp/igemparts/
 ADD fixsql.js /tmp/igemparts/
 ADD xmldumpimport.py /tmp/igemparts/
 ADD create_sql.sh /tmp/igemparts/
 
 RUN cd /tmp/igemparts \
+        && gzip -d xml_parts.xml.gz \
         && chmod +x create_sql.sh \
         && ./create_sql.sh
 
