@@ -17,7 +17,7 @@ ADD create_sql.sh /tmp/igemparts/
 
 RUN cd /tmp/igemparts \
         && gzip -d xml_parts.xml.gz \
-        && chmod +x create_sql.sh \
+        ; chmod +x create_sql.sh \
         && ./create_sql.sh
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server && service mysql stop
